@@ -48,7 +48,6 @@ export default (props) => {
                     <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/><br/>
                     <input type="submit" value= 'Login'/>
                 </fieldset>
-                
             </form>
 
             {error ? 
