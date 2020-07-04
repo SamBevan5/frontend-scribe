@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom';
 
 
 
+
 export default (props) => {
     const [username, setUsername] = React.useState()
     const [password, setPassword] = React.useState()
@@ -47,7 +48,6 @@ export default (props) => {
                     <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/><br/>
                     <input type="submit" value= 'Login'/>
                 </fieldset>
-                
             </form>
 
             {error ? 
