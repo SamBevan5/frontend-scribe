@@ -25,7 +25,7 @@ export default (props) => {
                     token: response.data.token 
                 });
                 localStorage.setItem("auth-token", JSON.stringify(response.data.token));
-                history.push('/');
+                history.push('/dashboard');
                 })
                 .catch(function(error){
                     console.log(error)
@@ -53,9 +53,6 @@ export default (props) => {
             {error ? 
                 <div className="error-modal">
                     <div className="error-modal-textbox">
-                        <div className="modal-image">
-                            <img src="https://i.imgur.com/FeiXWXA.png"></img>
-                        </div>
                         <h1>Oops! Something went wrong! </h1>
                         <h4>Try another username and password</h4>
                         <div id="modal-footer">
