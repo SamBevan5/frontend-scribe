@@ -53,9 +53,7 @@ export default (props) => {
             {errorStatus ? 
                 <div className="error-modal">
                     <div className="error-modal-textbox">
-                        <div className="modal-image">
-                            <img src="https://i.imgur.com/FeiXWXA.png"></img>
-                        </div>
+                        
                         <h2>Oops! Something went wrong! </h2>
                         <h4>Seems like someone may already have that username/password.</h4>
                         <div id="modal-footer">
