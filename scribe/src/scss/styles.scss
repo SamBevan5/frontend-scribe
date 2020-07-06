@@ -261,7 +261,53 @@ html, body {
 
                 }
             }
-    }
+        }
+        &__top-footer {
+            background-color: $main-color;
+            width: 100%;
+            padding: 10% 15%;
+            margin-top: 10%;   
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            h1 {
+                font-weight: 800;   
+                font-size: 2.5rem;    
+                margin-top: 0; 
+                margin-bottom: 10%;  
+                text-align: center;       
+            }
+            h4 {
+                font-weight: 400;
+                font-size: 1rem;
+                margin-top: 0;
+                margin-bottom: 20%;
+                text-align: center;
+                
+            }
+            button{ 
+                background-color: $accent-color;
+                color: $main-color;
+                border-radius: 3px;
+                width: 100%;
+                font-size: 1em;
+                border: none;
+                font-weight: 700;
+                letter-spacing: 2px;
+                padding: 2% 0;
+                color: $secondary-color;
+     
+            }
+            button:hover {
+                opacity: .9;
+                cursor: pointer;
+            }
+            button:active {
+                background-color: rgb(83, 82, 82);
+            }
+        }
     }
 
 }
