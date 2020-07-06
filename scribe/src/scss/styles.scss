@@ -1,20 +1,324 @@
 //variables
 $main-color: #5e17eb;
 $secondary-color: white;
-$accent-color: #d3c9e7;
+$accent-color: #f96103;
+$hover-color: rgb(180, 179, 179);
 
 * {
     box-sizing: border-box;
     // border: 1px solid red;
+    font-family: 'Raleway', sans-serif;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: $main-color;
 }
 
+//////////////////////
+//SMALL PHONE STYLING
+//////////////////////
+
+@media screen and (max-width: 700px){
+
+    // Nav Bar
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        z-index: 1;
+        width: 100%;
+        background-color: $secondary-color;
+        padding-top: .7%;
+        padding-bottom: .7%;
+    
+        &__img {
+            margin-left: 7%;
+            img{
+                height: 7vh;
+                margin-top: 2%;;
+                margin-bottom: 2%;
+            }
+        }
+    
+        &__links {
+            align-self: center;
+            display: flex;
+            width: 45%;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-right: 3%;
+            span {
+                color: black;
+                font-family: 'Lato', sans-serif;
+                font-weight: 700;
+                padding-bottom: 3px;
+            }
+        }
+    }
+
+    //Nav bar styling for login and signup links
+    #signup-text{
+        color: $secondary-color;
+        border-radius: 2px;
+        padding: 2vh;
+        background-color: $accent-color
+    
+    }
+
+    #login-text{
+        color: $main-color;
+    }
+
+    #signup-text:hover{
+        opacity: .7;
+
+    }
+
+    #login-text:hover{
+        color: #9771e4;
+    }
+
+    //app homepage
+    .App {
+        height: 100%;
+        width: 100vw;
+        background-color: $secondary-color;
+    
+        &__header{
+            background-image: url('/scribe-banner.png');
+            background-size: cover;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: center;
+            align-items: center;
+            padding: 0 3%;
+            &__image {
+                height: 48%;
+                margin-bottom: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    height: 90%;
+                    width: 100%;
+                }
+            }
+            &__text{
+                height: 52%;
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                h1 {
+                    font-weight: 800;   
+                    font-size: 3em;    
+                    margin-top: 0; 
+                    margin-bottom: 2%;
+                        
+                }
+                h4 {
+                    font-weight: 400;
+                    font-size: 1em;
+                    margin-top: 0;
+                    margin-bottom: 10%;
+                
+                }
+                button{ 
+                    background-color: $accent-color;
+                    border-radius: 3px;
+                    font-size: 1em;
+                    border: none;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                    margin-bottom: 5%;
+                    padding: 2% 0;
+                    color: $secondary-color;  
+                }
+                button:hover {
+                    opacity: .9;
+                    cursor: pointer;
+                }
+                button:active {
+                    background-color: rgb(83, 82, 82);
+                }
+            }
+        }
+
+        &__main-content {
+            display: flex;
+            flex-direction: column;
+            &__infographics{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                &__icon{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: whitesmoke;
+                    img{
+                        margin-top: 5%;
+                        width: 10%;
+                    }
+                    h1{
+                        margin-top: 8%;
+                        margin-bottom: 8%;
+                        font-size: 2em;
+                        text-align: center;
+                    }
+                }
+
+                &__1{
+                    width: 95%;
+                    margin-top: 5%;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    justify-content: center;
+                    align-items: center;
+                    &__text{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+                        h1{
+                            color: $main-color;
+                            font-size: 2.2em;
+                            font-weight: 700;
+                            margin-bottom: 1%;
+                        }
+                        h4{
+                            font-size: 1.5em;
+                            font-weight: 500;
+                        }
+                        a{
+                            color: $accent-color;
+                            font-weight: 500;
+                            font-size: 1.1em;
+                            text-decoration: none; 
+                            width: 100%;
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                        
+                    }
+                    &__image{
+                        margin-top: 20%;
+                        img{
+                            width: 100%;
+                        }
+                        
+                    }
+
+                }
+
+                &__2{
+                    width: 95%;
+                    margin-top: 5%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    &__text{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+                        h1{
+                            color: $main-color;
+                            font-size: 2.2em;
+                            font-weight: 700;
+                            margin-bottom: 1%;
+                        }
+                        h4{
+                            font-size: 1.5em;
+                            font-weight: 500;
+                        }
+                        a{
+                            color: $accent-color;
+                            font-weight: 500;
+                            font-size: 1.1em;
+                            text-decoration: none; 
+                            width: 100%;
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                        
+                    }
+                    &__image{
+                        margin-top: 20%;
+                        img{
+                            width: 100%;
+                        }
+                        
+                    }
+
+                }
+            }
+        }
+        &__top-footer {
+            background-color: $main-color;
+            width: 100%;
+            padding: 10% 15%;
+            margin-top: 10%;   
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            h1 {
+                font-weight: 800;   
+                font-size: 2.5rem;    
+                margin-top: 0; 
+                margin-bottom: 10%;  
+                text-align: center;       
+            }
+            h4 {
+                font-weight: 400;
+                font-size: 1rem;
+                margin-top: 0;
+                margin-bottom: 20%;
+                text-align: center;
+                
+            }
+            button{ 
+                background-color: $accent-color;
+                color: $main-color;
+                border-radius: 3px;
+                width: 100%;
+                font-size: 1em;
+                border: none;
+                font-weight: 700;
+                letter-spacing: 2px;
+                padding: 2% 0;
+                color: $secondary-color;
+     
+            }
+            button:hover {
+                opacity: .9;
+                cursor: pointer;
+            }
+            button:active {
+                background-color: rgb(83, 82, 82);
+            }
+        }
+    }
+
+}
+
+
+
+//////////////////////
+//WEB STYLING
+//////////////////////
+
+@media screen and (min-width: 701px) {
 //Styling for the Nav bar component
 .nav {
     display: flex;
@@ -37,10 +341,11 @@ html, body {
     &__links {
         align-self: center;
         display: flex;
-        width: 15%;
+        width: 25vw;
         justify-content: space-evenly;
         align-items: center;
-        margin-right: 7%;
+        margin-right: 3%;
+        height: 100%;
         span {
             color: black;
             font-family: 'Lato', sans-serif;
@@ -48,14 +353,16 @@ html, body {
             padding-bottom: 3px;
         }
     }
+
+    
 }
 
 //Nav bar styling for login and signup links
 #signup-text{
-    color: $main-color;
+    color: $secondary-color;
     border-radius: 2px;
-    border: 2px solid $main-color;
-    padding: 8px
+    padding: 2vh;
+    background-color: $accent-color
 
 }
 
@@ -64,8 +371,7 @@ html, body {
 }
 
 #signup-text:hover{
-    color: #9771e4;
-    border: 2px solid #9771e4;
+    opacity: .7;
 
 }
 
@@ -78,11 +384,10 @@ html, body {
 //Styling for homepage
 
 .App {
-    height: 300vh;
+    height: 100%;
     background-color: $secondary-color;
 
     &__header{
-        height: 28%;
         width: 100%;
         background-image: url('/scribe-banner.png');
         background-size: cover;
@@ -105,33 +410,206 @@ html, body {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            margin-bottom: 5%;
+            margin-top: 5%;
             h1 {
                 font-weight: 800;   
                 font-size: 4rem;    
                 margin-top: 0; 
-                margin-bottom: 0;
+                margin-bottom: 2%;
                     
             }
             h4 {
                 font-weight: 400;
                 font-size: 1.5rem;
                 margin-top: 0;
-                margin-bottom: 0;
+                margin-bottom: 10%;
             
             }
             button{ 
-                background-color: $secondary-color;
+                background-color: $accent-color;
                 color: $main-color;
                 border-radius: 3px;
-                width: 40%;
-                height: 10%;
+                width: 50%;
                 font-size: .8em;
                 border: none;
                 font-weight: 700;
                 letter-spacing: 2px;
-
-                
+                padding: 2% 0;
+                color: $secondary-color;
+ 
+            }
+            button:hover {
+                opacity: .9;
+                cursor: pointer;
+            }
+            button:active {
+                background-color: rgb(83, 82, 82);
             }
         }
     }
+    &__main-content {
+            display: flex;
+            flex-direction: column;
+            &__infographics{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                &__icon{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: whitesmoke;
+                    img{
+                        margin-top: 5%;
+                        width: 10%;
+                    }
+                    h1{
+                        margin-top: 8%;
+                        margin-bottom: 8%;
+                        font-size: 3em;
+                        text-align: center;
+                    }
+                }
+
+                &__1{
+                    width: 85%;
+                    margin-top: 5%;
+                    display: flex;
+                    justify-content: space-between;
+                    &__text{
+                        width: 40%;
+                        h1{
+                            color: $main-color;
+                            font-size: 2.2em;
+                            font-weight: 700;
+                        }
+                        h4{
+                            font-size: 1.5em;
+                            font-weight: 500;
+                        }
+                        a{
+                            color: $accent-color;
+                            font-weight: 500;
+                            font-size: 1.1em;
+                            text-decoration: none; 
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                        
+                    }
+                    &__image{
+                        width: 40%;
+                        img{
+                            width: 100%;
+                        }
+                        
+                    }
+
+                }
+
+                &__2{
+                    margin-top: 10%;
+                    width: 85%;
+                    display: flex;
+                    justify-content: space-between;
+                    &__text{
+                        width: 40%;
+                        h1{
+                            color: $main-color;
+                            font-size: 2.2em;
+                            font-weight: 700;
+                        }
+                        h4{
+                            font-size: 1.5em;
+                            font-weight: 500;
+                        }
+                        a{
+                            color: $accent-color;
+                            font-weight: 500;
+                            font-size: 1.1em;
+                            text-decoration: none; 
+                        }
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                        
+                    }
+                    &__image{
+                        width: 40%;
+                        img {
+                            width: 100%;
+                        }
+                        
+                    }
+                }
+            }
+    }
+
+    &__top-footer {
+        background-color: $main-color;
+        width: 100%;
+        padding: 10% 15%;
+        margin-top: 10%;   
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        h1 {
+            font-weight: 800;   
+            font-size: 4rem;    
+            margin-top: 0; 
+            margin-bottom: 2%;  
+            text-align: center;       
+        }
+        h4 {
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 5%;
+            text-align: center;
+            
+        }
+        button{ 
+            background-color: $accent-color;
+            color: $main-color;
+            border-radius: 3px;
+            width: 60%;
+            font-size: .8em;
+            border: none;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 2% 0;
+            color: $secondary-color;
+ 
+        }
+        button:hover {
+            opacity: .9;
+            cursor: pointer;
+        }
+        button:active {
+            background-color: rgb(83, 82, 82);
+        }
+    }
 }
+}
+
+// @media screen and (min-width: 701px) and (max-width: 1250px){
+//     .App__main-content__infographics__1__image{
+//         img{
+//             display: none;
+//             width: 10% !important;
+//         }
+//     }
+//     .App__main-content__infographics__2__image{
+//         img{
+//             display: none;
+//             width:10% !important;
+//     }
+//     }
+// }

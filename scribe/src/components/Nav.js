@@ -21,15 +21,15 @@ export default (props) => {
     return (
         <div className= "nav">
             <div className="nav__img">
-                <img src="scribe.png" alt="scribe-logo"></img>
+                <a href="/"><img src="scribe.png" alt="scribe-logo"></img></a>
             </div>
             <div className="nav__links">
                 {userData.token ? 
                 (<><Link to="" style={{ textDecoration: 'none' }}><span onClick={logout}>Logout</span></Link></>) : 
                 (<>
-                <Link to="/register" style={{ textDecoration: 'none' }}><span id="signup-text">Sign Up</span></Link>
-                <span id="header-or-text">or</span>
                 <Link to="/login" style={{ textDecoration: 'none' }}><span id="login-text">Log In</span></Link></>)}
+                <Link to="/register" style={{ textDecoration: 'none' }}><span id="signup-text">Sign Up</span></Link>
+                
             </div>
         </div>
     );

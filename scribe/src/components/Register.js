@@ -25,7 +25,7 @@ export default (props) => {
                 user: loginResponse.data.user
             })
             await localStorage.setItem("auth-token", JSON.stringify(loginResponse.data.token))
-             history.push('/');
+             history.push('/dashboard');
         }
         catch(error) {
             setErrorStatus(true)
