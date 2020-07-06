@@ -63,6 +63,17 @@ export default (props) => {
                     </div>
                     <div></div>
                 </div>
+                <div className="App__top-footer">
+                    <h1>
+                        Sign up for Scribe Today.
+                    </h1>
+                    <h4>
+                        Capture ideas and store them in a place that you won't forget. Set goals and track progress towards reaching them. Become more efficient and better yourself.
+                    </h4>
+                    <button id="App__top-footer__signup">
+                            SIGN UP FOR FREE
+                    </button>
+                </div>
 
             </div>
         </>
