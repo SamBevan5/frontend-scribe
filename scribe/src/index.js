@@ -7,7 +7,8 @@ import Home from './components/Home.js';
 import Dashboard from './components/Dashboard'
 import UserContext from './context/UserContext'
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Nav from './components/Nav'
+
+
 
     
 const App = (props) => {
@@ -25,7 +26,6 @@ const App = (props) => {
         <>
             <BrowserRouter history={hist}>
                 <UserContext.Provider value={{userData, setUserData}}>
-                    <Nav />
                     <Switch>
                         <Route exact path="/" component={Home}/>
                         <Route path="/dashboard" component={Dashboard}/>
