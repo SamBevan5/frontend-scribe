@@ -81,17 +81,10 @@ export default (props) => {
 
         console.log(response)
         getNotes()
+        setshowSidebar(true);
+        newMode();
 
     }
-
-    const handleChange1 = (e) => {
-        updateFormData({
-            ...formData,
-
-            // Trimming any whitespace
-            [e.target.name]: e.target.value.trim()
-        });
-    };
 
     //edit note to users collection
     const editNote = async (event, id) => {
@@ -116,6 +109,8 @@ export default (props) => {
         });
 
         getNotes()
+        setshowSidebar(true);
+        newMode();
 
     }
 
@@ -130,9 +125,12 @@ export default (props) => {
     }
 
     const newMode = () => {
+        $("#title").val("");
+        setValue("")
         setEdit(false)
         setnewNote(true)
-        setValue("")
+
+        
     }
 
     //Delete Note from users collection
@@ -224,11 +222,10 @@ export default (props) => {
                         {newNote ?
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
-                                <label htmlFor="title">Title:</label><br />
-                                <input type="text" name="title" id="title" onChange={handleChange} /><br />
-                                <label htmlFor="notes">Body:</label><br />
+                                <label htmlFor="title">Title:</label>
+                                <input type="text" name="title" id="title" placeholder="Type in your title here..."onChange={handleChange} /><br />
                                 <div className="editor-area">
-                                    <ReactQuill id="notes" theme="snow" value={value} style={divStyle} onChange={setValue} />
+                                    <ReactQuill id="notes" theme="snow" value={value} placeholder="Here is where your notes go..." style={divStyle} onChange={setValue} />
                                 </div><br />
                                 <button type="submit" onClick={addNote}> Create Note</button>
                             </form>
@@ -237,11 +234,10 @@ export default (props) => {
                         {edit ?
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
-                                <label htmlFor="title">Title:</label><br />
+                                <label htmlFor="title">Title:</label>
                                 <input type="text" name="title" id="title" value={noteTitle} onChange={() => {
                                     setNoteTitle($('#title').val())
                                     }} /><br />
-                                <label htmlFor="notes">Body:</label><br />
                                 <div className="editor-area">
                                     <ReactQuill id="notes" theme="snow" value={noteBody} style={divStyle} onChange={setNoteBody}/>
                                 </div><br />
