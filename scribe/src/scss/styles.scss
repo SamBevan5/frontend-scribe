@@ -1,9 +1,9 @@
 //variables
-$main-color: #5e17eb;
+$main-color: #2657ef;
 $secondary-color: white;
 $accent-color: #f96103;
 $hover-color: rgb(180, 179, 179);
-$alt-color: #222222;
+$alt-color: #5270ff;
 
 * {
     box-sizing: border-box;
@@ -87,7 +87,7 @@ html, body {
         background-color: $secondary-color;
     
         &__header{
-            background-image: url('/scribe-banner.png');
+            background-image: url('/scribe-banner-3.png');
             background-size: cover;
             display: flex;
             flex-direction: column-reverse;
@@ -264,7 +264,7 @@ html, body {
             }
         }
         &__top-footer {
-            background-color: $main-color;
+            background-color: #2657ef;
             width: 100%;
             padding: 10% 15%;
             margin-top: 10%;   
@@ -390,7 +390,7 @@ html, body {
 
     &__header{
         width: 100%;
-        background-image: url('/scribe-banner.png');
+        background-image: url('/scribe-banner-3.png');
         background-size: cover;
         display: flex;
         justify-content: space-around;
@@ -552,7 +552,7 @@ html, body {
     }
 
     &__top-footer {
-        background-color: $main-color;
+        background-color: #2657ef;
         width: 100%;
         padding: 10% 15%;
         margin-top: 10%;   
@@ -612,10 +612,14 @@ html, body {
             overflow: auto;
             display: flex;
             &__content {
-                width:300px;
-                position: relative;
+                width:20vw;
+                min-width: 300px; 
+                position: fixed;
+                left: 50px;
                 border-right: 1px solid #d8d8d8;
                 z-index: 10000;
+                height: 100%;
+                background-color: $secondary-color;
                 &__addnote {
                     border-bottom: 1px solid #d8d8d8;
                     padding: 5% 5%;
@@ -631,8 +635,8 @@ html, body {
                     align-items: center;
                 }
                 &__item:hover {
-                    border-left: 3px solid #632aff;
-                    background-color: #ede3ff;
+                    border-right: 3px solid $main-color;
+                    background-color: #e3e5ff;
                     cursor: pointer;
                 }
                 
@@ -640,14 +644,17 @@ html, body {
             &__slider {
                 display: flex;
                 justify-content: center;
-                background-color: #632aff;
+                background-color: $main-color;
+                align-items: center;
                 width: 50px;
+                padding-top: 20%;
                 &__icon {
                     height: 100%;
-                    margin-top: 20%;
+                    margin-top: 50%;
+                    align-self: flex-end;
                 }
                 &__icon:hover {
-                    color: $accent-color;
+                    color: $main-color;
                     cursor: pointer;
                 }
             }
@@ -660,7 +667,6 @@ html, body {
             align-items: center;
             &__logo {
                 margin-top: 2%;
-                margin-right: 4%;
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
@@ -680,7 +686,7 @@ html, body {
                 -webkit-box-shadow: 0 0 6px #ccc;
                 box-shadow: 0 0 6px #ccc;
                 border-radius: 3px;
-                width: 56vw;
+                width: 50vw;
             }
         }
             
@@ -725,8 +731,9 @@ li {
 }
 
 #logout {
-    color: $main-color;
+    color: $alt-color;
     font-weight: 400;
+    margin-right: 1vw;
 }
 
 .pi-list {
@@ -735,11 +742,43 @@ li {
 }
 .pi-list:hover {
     font-size: 1.6em;
-    color: $accent-color;
+    color: rgb(209, 209, 252);
+}
+
+button[type=submit] {
+    background-color: $accent-color;
+    border: none;
+    border-radius: 3px;
+    padding: 1%;
+    color: white;
+    font-weight: 500;
+}
+
+button[type=submit]:hover {
+    opacity: .7;
+    color: white;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {
-    .Dashboard__main-content__sidebar__content {
-        display: none;
+    button[type=submit] {
+        background-color: $accent-color;
+        border: none;
+        border-radius: 3px;
+        padding: 1%;
+        color: white;
+        font-weight: 500;
+        width: 100%;
     }
+
+    .Dashboard__main-content__note-container__logo {
+        margin-top: 5%;
+    }
+    .Dashboard__main-content__note-container__note {
+        width: 80vw;
+        margin-top: 3%;
+    }
+
+
 }
+

@@ -13,7 +13,14 @@ export default (props) => {
     const [formData, updateFormData] = React.useState(null);
     const [value, setValue] = useState('');
     const [showSidebar, setshowSidebar] = React.useState(true)
+    let [noteTitle, setNoteTitle] = React.useState("");
+    let [noteBody, setNoteBody] = React.useState("");
+    let [content, setContent] = React.useState("");
+    const [edit, setEdit] = React.useState(false);
+    const [newNote, setnewNote] = React.useState(true);
 
+
+    //localize storage of token
     React.useEffect(() => {
         const checkToken = JSON.parse(window.localStorage.getItem('auth-token'))
         if (checkToken) {
@@ -21,8 +28,10 @@ export default (props) => {
         }
     }, [])
 
+    //pull in users notes 
     React.useEffect(() => {
         getNotes()
+        setContent("new")
     }, [])
 
     // Get all of the users notes from the API
@@ -39,6 +48,7 @@ export default (props) => {
 
     }
 
+    //update form data with change in the editor
     const handleChange = (e) => {
         updateFormData({
             ...formData,
@@ -48,6 +58,7 @@ export default (props) => {
         });
     };
 
+    //add note to users collection
     const addNote = async (e) => {
         console.log(value)
         console.log(userData)
@@ -73,7 +84,29 @@ export default (props) => {
 
     }
 
-    //Delete Note
+    //edit note to users collection
+    const editNote = async (e, id) => {
+
+        e.preventDefault()
+
+        let finalData = formData;
+        finalData.notes = value;
+        console.log(finalData)
+
+        const response = await fetch(`http://localhost:5000/notes/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': "application/json",
+                Authorization: `bearer ${userData.token}`
+            },
+            body: JSON.stringify(finalData)
+        });
+
+        getNotes()
+
+    }
+
+    //Delete Note from users collection
     const handleDelete = async (id) => {
         const response = await fetch(`http://localhost:5000/notes/${id}`, {
             method: 'DELETE',
@@ -85,6 +118,7 @@ export default (props) => {
         getNotes();
     }
 
+    //toggle sidebar visibility
     const toggleSidebar = () => {
         if (showSidebar == true) {
             setshowSidebar(false)
@@ -94,6 +128,7 @@ export default (props) => {
         console.log(showSidebar);
     }
 
+    //styling for the editor
     const divStyle = {
         'height': '50vh',
         'overflow': 'hidden',
@@ -101,6 +136,7 @@ export default (props) => {
         'border-bottom': '1px solid #d8d8d8',
     }
 
+    //functionality for the logout button
     const { userData, setUserData } = useContext(UserContext)
     const history = useHistory();
 
@@ -113,6 +149,24 @@ export default (props) => {
         history.push('/')
     }
 
+    const editData = (string, head, body) => {
+        setEdit(true)
+        setnewNote(false)
+        setNoteTitle(head);
+        setNoteBody(body);
+
+        console.log(head)
+        console.log(typeof(head))
+        console.log(body)
+        console.log(typeof(body))
+        console.log(string)
+        console.log(typeof(string))
+
+        
+
+        
+        
+    }
 
     return (
         <>
@@ -127,12 +181,12 @@ export default (props) => {
                         {showSidebar ?
                             <div className="Dashboard__main-content__sidebar__content">
                                 <div className="Dashboard__main-content__sidebar__content__addnote" >
-                                    <div className="item-add"> <i className="pi pi-plus-circle" style={{ color: "green", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
+                                    <div className="item-add"> <i className="pi pi-plus-circle" style={{ color: "#5271ff", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
                                 </div>
                                 {notes ?
                                     notes.map((note, index) => {
                                         return (
-                                            <div className="Dashboard__main-content__sidebar__content__item" key={index}>
+                                            <div className="Dashboard__main-content__sidebar__content__item" key={index} onClick={() => { editData("edit", note.title, note.notes)}}>
                                                 <div className="item-title" key={index}>{note.title}</div>
                                                 <div className="tooltip">
                                                     <button onClick={() => {
@@ -150,22 +204,37 @@ export default (props) => {
                     <div className="Dashboard__main-content__note-container">
                         <div className="Dashboard__main-content__note-container__logo">
                             <div></div>
-                            <img src="scribe.png" alt="scribe-logo"></img>
+                            <img src="scribe-main-logo.png" alt="scribe-logo"></img>
                             <div className="dashnav__links">
                                 <Link to="" style={{ textDecoration: 'none' }}><span id="logout" onClick={logout}>Logout</span></Link>
                             </div>
                         </div>
+                        {newNote ?
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
                                 <label htmlFor="title">Title:</label><br />
-                                <input type="title" name="title" id="title" onChange={handleChange} /><br />
+                                <input type="text" name="title" id="title" onChange={handleChange} /><br />
                                 <label htmlFor="notes">Body:</label><br />
                                 <div className="editor-area">
-                                    <ReactQuill id="notes" theme="snow" value={value} onChange={setValue} style={divStyle} />
+                                    <ReactQuill id="notes" theme="snow" value={value} style={divStyle} onChange={setValue} />
                                 </div><br />
-                                <button type="submit" onClick={addNote}> Submit</button>
+                                <button type="submit" onClick={addNote}> Create Note</button>
                             </form>
                         </div>
+                        : ""}
+                        {edit ?
+                        <div className="Dashboard__main-content__note-container__note">
+                            <form>
+                                <label htmlFor="title">Title:</label><br />
+                                <input type="text" name="title" id="title" value={noteTitle} onChange={handleChange} /><br />
+                                <label htmlFor="notes">Body:</label><br />
+                                <div className="editor-area">
+                                    <ReactQuill id="notes" theme="snow" value={noteBody} style={divStyle} onChange={setValue}/>
+                                </div><br />
+                                <button type="submit" onClick={editNote}> Create Note</button>
+                            </form>
+                        </div>
+                        : ""}
                     </div>
                 </div>
             </div>

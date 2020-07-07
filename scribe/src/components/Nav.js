@@ -21,7 +21,7 @@ export default (props) => {
     return (
         <div className= "nav">
             <div className="nav__img">
-                <a href="/"><img src="scribe.png" alt="scribe-logo"></img></a>
+                <a href="/"><img src="scribe-main-logo.png" alt="scribe-logo"></img></a>
             </div>
             <div className="nav__links">
                 {userData.token ? 
