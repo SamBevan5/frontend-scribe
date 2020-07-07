@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import 'primeicons/primeicons.css';
+import $ from 'jquery'
 
 export default (props) => {
 
@@ -13,12 +14,12 @@ export default (props) => {
     const [formData, updateFormData] = React.useState(null);
     const [value, setValue] = useState('');
     const [showSidebar, setshowSidebar] = React.useState(true)
-    let [noteTitle, setNoteTitle] = React.useState("");
-    let [noteBody, setNoteBody] = React.useState("");
-    let [content, setContent] = React.useState("");
+    let [noteTitle, setNoteTitle] = React.useState(null);
+    let [noteBody, setNoteBody] = React.useState(null);
+    let [noteId, setNoteId] = React.useState("");
     const [edit, setEdit] = React.useState(false);
     const [newNote, setnewNote] = React.useState(true);
-
+    
 
     //localize storage of token
     React.useEffect(() => {
@@ -31,7 +32,6 @@ export default (props) => {
     //pull in users notes 
     React.useEffect(() => {
         getNotes()
-        setContent("new")
     }, [])
 
     // Get all of the users notes from the API
@@ -84,14 +84,27 @@ export default (props) => {
 
     }
 
+    const handleChange1 = (e) => {
+        updateFormData({
+            ...formData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
     //edit note to users collection
-    const editNote = async (e, id) => {
+    const editNote = async (event, id) => {
 
-        e.preventDefault()
+        event.preventDefault()
+        
+        console.log(noteBody)
+        console.log(userData)
+        console.log(formData);
 
-        let finalData = formData;
-        finalData.notes = value;
-        console.log(finalData)
+
+
+        let finalData1 = {title: noteTitle, notes: noteBody}
 
         const response = await fetch(`http://localhost:5000/notes/${id}`, {
             method: 'PUT',
@@ -99,11 +112,27 @@ export default (props) => {
                 'Content-Type': "application/json",
                 Authorization: `bearer ${userData.token}`
             },
-            body: JSON.stringify(finalData)
+            body: JSON.stringify(finalData1)
         });
 
         getNotes()
 
+    }
+
+    //set mode of editor to edit mode
+    const editData = (string, head, body, identification) => {
+        setEdit(true)
+        setnewNote(false)
+        setNoteTitle(head);
+        setNoteBody(body);
+        setNoteId(identification);
+
+    }
+
+    const newMode = () => {
+        setEdit(false)
+        setnewNote(true)
+        setValue("")
     }
 
     //Delete Note from users collection
@@ -116,24 +145,7 @@ export default (props) => {
             }
         })
         getNotes();
-    }
-
-    //toggle sidebar visibility
-    const toggleSidebar = () => {
-        if (showSidebar == true) {
-            setshowSidebar(false)
-        } else {
-            setshowSidebar(true)
-        }
-        console.log(showSidebar);
-    }
-
-    //styling for the editor
-    const divStyle = {
-        'height': '50vh',
-        'overflow': 'hidden',
-        'width': '100%',
-        'border-bottom': '1px solid #d8d8d8',
+        newMode();
     }
 
     //functionality for the logout button
@@ -149,24 +161,24 @@ export default (props) => {
         history.push('/')
     }
 
-    const editData = (string, head, body) => {
-        setEdit(true)
-        setnewNote(false)
-        setNoteTitle(head);
-        setNoteBody(body);
-
-        console.log(head)
-        console.log(typeof(head))
-        console.log(body)
-        console.log(typeof(body))
-        console.log(string)
-        console.log(typeof(string))
-
-        
-
-        
-        
+    //styling for the editor
+    const divStyle = {
+        'height': '50vh',
+        'overflow': 'hidden',
+        'width': '100%',
+        'borderBottom': '1px solid #d8d8d8',
     }
+
+    //toggle sidebar visibility
+    const toggleSidebar = () => {
+        if (showSidebar == true) {
+            setshowSidebar(false)
+        } else {
+            setshowSidebar(true)
+        }
+        console.log(showSidebar);
+    }
+
 
     return (
         <>
@@ -181,12 +193,12 @@ export default (props) => {
                         {showSidebar ?
                             <div className="Dashboard__main-content__sidebar__content">
                                 <div className="Dashboard__main-content__sidebar__content__addnote" >
-                                    <div className="item-add"> <i className="pi pi-plus-circle" style={{ color: "#5271ff", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
+                                    <div className="item-add" onClick={newMode}> <i className="pi pi-plus-circle" style={{ color: "#5271ff", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
                                 </div>
                                 {notes ?
                                     notes.map((note, index) => {
                                         return (
-                                            <div className="Dashboard__main-content__sidebar__content__item" key={index} onClick={() => { editData("edit", note.title, note.notes)}}>
+                                            <div className="Dashboard__main-content__sidebar__content__item" key={index} onClick={() => { editData("edit", note.title, note.notes, note._id)}}>
                                                 <div className="item-title" key={index}>{note.title}</div>
                                                 <div className="tooltip">
                                                     <button onClick={() => {
@@ -226,12 +238,14 @@ export default (props) => {
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
                                 <label htmlFor="title">Title:</label><br />
-                                <input type="text" name="title" id="title" value={noteTitle} onChange={handleChange} /><br />
+                                <input type="text" name="title" id="title" value={noteTitle} onChange={() => {
+                                    setNoteTitle($('#title').val())
+                                    }} /><br />
                                 <label htmlFor="notes">Body:</label><br />
                                 <div className="editor-area">
-                                    <ReactQuill id="notes" theme="snow" value={noteBody} style={divStyle} onChange={setValue}/>
+                                    <ReactQuill id="notes" theme="snow" value={noteBody} style={divStyle} onChange={setNoteBody}/>
                                 </div><br />
-                                <button type="submit" onClick={editNote}> Create Note</button>
+                                <button type="submit" onClick={(event) => {editNote(event, noteId)}}> Edit Note</button>
                             </form>
                         </div>
                         : ""}

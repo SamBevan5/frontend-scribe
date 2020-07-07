@@ -714,6 +714,7 @@ li {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    z-index: 1000000000;
 }
 
 .item-title {
@@ -777,6 +778,10 @@ button[type=submit]:hover {
     .Dashboard__main-content__note-container__note {
         width: 80vw;
         margin-top: 3%;
+    }
+    .Dashboard__main-content__sidebar__content {
+        min-width: 250px;
+        width: 15vw;
     }
 
 
