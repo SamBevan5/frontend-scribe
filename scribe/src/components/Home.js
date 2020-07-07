@@ -1,5 +1,6 @@
 import React from 'react';
 import '../scss/styles.scss'
+import Nav from './Nav'
 
 export default (props) => {
     
@@ -16,6 +17,7 @@ export default (props) => {
 
     return (
         <>
+            <Nav/>
             <div className="App">
                 <div className="App__header">
                     <div className="App__header__text">
