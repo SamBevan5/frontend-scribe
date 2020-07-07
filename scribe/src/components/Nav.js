@@ -29,7 +29,6 @@ export default (props) => {
                 (<>
                 <Link to="/login" style={{ textDecoration: 'none' }}><span id="login-text">Log In</span></Link></>)}
                 <Link to="/register" style={{ textDecoration: 'none' }}><span id="signup-text">Sign Up</span></Link>
-                
             </div>
         </div>
     );

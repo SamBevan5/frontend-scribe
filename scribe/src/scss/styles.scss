@@ -3,6 +3,7 @@ $main-color: #5e17eb;
 $secondary-color: white;
 $accent-color: #f96103;
 $hover-color: rgb(180, 179, 179);
+$alt-color: #222222;
 
 * {
     box-sizing: border-box;
@@ -60,7 +61,7 @@ html, body {
     //Nav bar styling for login and signup links
     #signup-text{
         color: $secondary-color;
-        border-radius: 2px;
+        border-radius: 3px;
         padding: 2vh;
         background-color: $accent-color
     
@@ -360,7 +361,7 @@ html, body {
 //Nav bar styling for login and signup links
 #signup-text{
     color: $secondary-color;
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 2vh;
     background-color: $accent-color
 
@@ -599,17 +600,146 @@ html, body {
 }
 }
 
-// @media screen and (min-width: 701px) and (max-width: 1250px){
-//     .App__main-content__infographics__1__image{
-//         img{
-//             display: none;
-//             width: 10% !important;
-//         }
-//     }
-//     .App__main-content__infographics__2__image{
-//         img{
-//             display: none;
-//             width:10% !important;
-//     }
-//     }
-// }
+//Web Styling for user dashboard
+.Dashboard {
+    height: 90vh;
+    &__main-content {
+        display: flex;
+        &__sidebar {
+            background-color: $secondary-color;
+            height: 100vh;
+            color: black;
+            overflow: auto;
+            display: flex;
+            &__content {
+                width:300px;
+                position: relative;
+                border-right: 1px solid #d8d8d8;
+                z-index: 10000;
+                &__addnote {
+                    border-bottom: 1px solid #d8d8d8;
+                    padding: 5% 5%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                &__item {
+                    border-bottom: 1px solid #d8d8d8;
+                    padding: 5% 5%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                &__item:hover {
+                    border-left: 3px solid #632aff;
+                    background-color: #ede3ff;
+                    cursor: pointer;
+                }
+                
+            }
+            &__slider {
+                display: flex;
+                justify-content: center;
+                background-color: #632aff;
+                width: 50px;
+                &__icon {
+                    height: 100%;
+                    margin-top: 20%;
+                }
+                &__icon:hover {
+                    color: $accent-color;
+                    cursor: pointer;
+                }
+            }
+        }
+        &__note-container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &__logo {
+                margin-top: 2%;
+                margin-right: 4%;
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                color: $main-color;
+                img {
+                    height: 40px;
+                }
+            }
+            &__note {
+                background-color: white;
+                padding: 2% 2%;
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 2%;
+                height: 100%;
+                -moz-box-shadow: 0 0 6px #ccc;
+                -webkit-box-shadow: 0 0 6px #ccc;
+                box-shadow: 0 0 6px #ccc;
+                border-radius: 3px;
+                width: 56vw;
+            }
+        }
+            
+    }
+}
+
+#title {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 100%;
+    height: 4vh;
+    min-height: 20px;
+}
+
+#notes {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+li {
+    list-style: none;
+}
+
+.tooltip {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.item-title {
+    width: 100%;
+    text-align: left;
+    margin-left: 10%;
+    font-size: 1.2em;
+}
+
+.item-add {
+    width: 100%;
+    text-align: left;
+    margin-left: 10%;
+    font-size: 1.2em;
+}
+
+#logout {
+    color: $main-color;
+    font-weight: 400;
+}
+
+.pi-list {
+    font-size: 1.6em;
+    color: white;
+}
+.pi-list:hover {
+    font-size: 1.6em;
+    color: $accent-color;
+}
+
+@media screen and (max-width: 700px) {
+    .Dashboard__main-content__sidebar__content {
+        display: none;
+    }
+}
