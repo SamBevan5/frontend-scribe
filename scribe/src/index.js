@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
 import Login from './components/Login.js';
 import Register from './components/Register'
 import Home from './components/Home.js';
@@ -13,7 +12,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
     
 const App = (props) => {
     
-    let hist = createBrowserHistory()
 
     //STATE FOR STORING OUR JWT
     const [userData, setUserData] = useState({
@@ -24,7 +22,7 @@ const App = (props) => {
 
     return (
         <>
-            <BrowserRouter history={hist}>
+            <BrowserRouter>
                 <UserContext.Provider value={{userData, setUserData}}>
                     <Switch>
                         <Route exact path="/" component={Home}/>
