@@ -191,17 +191,18 @@ export default (props) => {
                         {showSidebar ?
                             <div className="Dashboard__main-content__sidebar__content">
                                 <div className="Dashboard__main-content__sidebar__content__addnote" >
-                                    <div className="item-add" onClick={newMode}> <i className="pi pi-plus-circle" style={{ color: "#5271ff", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
+                                    <div className="item-add" onClick={newMode}> <i className="pi pi-plus-circle" ></i> <h4>Create a new note: </h4></div>
                                 </div>
                                 {notes ?
                                     notes.map((note, index) => {
                                         return (
-                                            <div className="Dashboard__main-content__sidebar__content__item" key={index} onClick={() => { editData("edit", note.title, note.notes, note._id)}}>
+                                            <div className="Dashboard__main-content__sidebar__content__item" key={index}>
                                                 <div className="item-title" key={index}>{note.title}</div>
                                                 <div className="tooltip">
-                                                    <button onClick={() => {
+                                                <i class="pi pi-pencil" onClick={() => { editData("edit", note.title, note.notes, note._id)}}></i>
+                                                <i class="pi pi-trash" onClick={() => {
                                                         handleDelete(note._id)
-                                                    }}>X</button>
+                                                    }}></i> 
                                                 </div>
                                             </div>
                                         )

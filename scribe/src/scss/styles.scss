@@ -8,6 +8,7 @@ $alt-color: #5270ff;
 * {
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
+    
 }
 
 html, body {
@@ -76,7 +77,7 @@ html, body {
     }
 
     #login-text:hover{
-        color: #9771e4;
+        color: $alt-color;
     }
 
     //app homepage
@@ -377,7 +378,7 @@ html, body {
 }
 
 #login-text:hover{
-    color: #9771e4;
+    color: $alt-color;
 }
 
 
@@ -597,6 +598,7 @@ html, body {
         }
     }
 }
+
 }
 
 //Web Styling for user dashboard
@@ -627,20 +629,21 @@ html, body {
                     flex-direction: column;
                     align-items: center;
                 }
+                &__addnote:hover {
+                    background-color: rgb(220, 255, 220);
+                    border-right: 3px solid green;
+                }
+
                 &__item {
                     border-bottom: 1px solid #d8d8d8;
-                    padding: 5% 5%;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
+                    padding: 5% 5%;
+                    width: 100%;
                 }
                 &__item:hover {
                     border-right: 3px solid $main-color;
-                    background-color: #e3e5ff;
-                    cursor: pointer;
-                }
-                &__item:active{
-                    background-color: #b3b8ff;
+                    background-color: #f0f1ff;
                 }
                 
             }
@@ -683,7 +686,7 @@ html, body {
                 padding: 2% 2%;
                 margin-left: 10%;
                 margin-right: 10%;
-                margin-top: 2%;
+                margin-top: 4%;
                 height: 100%;
                 -moz-box-shadow: 0 0 6px #ccc;
                 -webkit-box-shadow: 0 0 6px #ccc;
@@ -731,14 +734,15 @@ li {
 .item-title {
     width: 100%;
     text-align: left;
-    margin-left: 10%;
     font-size: 1.2em;
 }
-
 .item-add {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     text-align: left;
-    margin-left: 10%;
     font-size: 1.2em;
 }
 
@@ -755,6 +759,59 @@ li {
 .pi-list:hover {
     font-size: 1.6em;
     color: rgb(209, 209, 252);
+    cursor: pointer;
+}
+
+.pi-list:active {
+    color: $accent-color;
+}
+
+.pi-trash{
+    margin-left: 5px;
+    color: $main-color;
+}
+.pi-pencil{
+    color: $main-color;
+}
+
+.pi-pencil:hover{
+    font-size: 1.1em;
+    color: $accent-color;
+    cursor: pointer;
+   
+}
+
+.pi-trash:hover {
+    font-size: 1.1em;
+    color: $accent-color;
+    cursor: pointer;
+    
+}
+
+.pi-pencil:active{
+    color: rgb(161, 107, 7);
+   
+}
+
+.pi-trash:active {
+    color: rgb(161, 107, 7);
+    
+}
+.pi-plus-circle {
+    color: #5271ff;
+    font-size: 1.8em;
+    margin: 0;
+    padding: 0;
+}
+
+.pi-plus-circle:hover {
+    color: green;
+    font-size: 1.9em;
+    cursor: pointer;
+}
+
+.pi-plus-circle:active {
+    color: rgb(2, 80, 2);
 }
 
 button[type=submit] {
