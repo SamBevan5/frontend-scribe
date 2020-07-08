@@ -2,6 +2,7 @@ import React from 'react';
 import '../scss/styles.scss'
 import Nav from './Nav'
 
+
 export default (props) => {
     
     // Store jwt
@@ -28,9 +29,9 @@ export default (props) => {
                         <h4>
                             Take notes anywhere, anytime. Never forget a thing again. Have all your thoughts easily accesible in one place.
                         </h4>
-                        <button id="App__header__text__signup">
+                        <a href="/register">
                             SIGN UP FOR FREE
-                        </button>
+                        </a>
                     </div>
                     <div className="App__header__image">
                         <img src="/scribe-banner-img.png" alt="banner-image"></img>
@@ -72,9 +73,9 @@ export default (props) => {
                     <h4>
                         Capture ideas and store them in a place that you won't forget. Set goals and track progress towards reaching them. Become more efficient and better yourself.
                     </h4>
-                    <button id="App__top-footer__signup">
-                            SIGN UP FOR FREE
-                    </button>
+                    
+                    <a href="/register" >SIGN UP FOR FREE</a>
+                
                 </div>
 
             </div>

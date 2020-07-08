@@ -36,7 +36,7 @@ export default (props) => {
 
     // Get all of the users notes from the API
     const getNotes = async () => {
-        const response = await fetch('http://localhost:5000/notes', {
+        const response = await fetch('http://backend-scribe.herokuapp.com/notes', {
             headers: { Authorization: `bearer ${userData.token}` }
         })
         const result = await response.json();
@@ -70,7 +70,7 @@ export default (props) => {
         finalData.notes = value;
         console.log(finalData)
 
-        const response = await fetch(`http://localhost:5000/notes`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",
@@ -81,17 +81,10 @@ export default (props) => {
 
         console.log(response)
         getNotes()
+        setshowSidebar(true);
+        newMode();
 
     }
-
-    const handleChange1 = (e) => {
-        updateFormData({
-            ...formData,
-
-            // Trimming any whitespace
-            [e.target.name]: e.target.value.trim()
-        });
-    };
 
     //edit note to users collection
     const editNote = async (event, id) => {
@@ -106,7 +99,7 @@ export default (props) => {
 
         let finalData1 = {title: noteTitle, notes: noteBody}
 
-        const response = await fetch(`http://localhost:5000/notes/${id}`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': "application/json",
@@ -116,6 +109,8 @@ export default (props) => {
         });
 
         getNotes()
+        setshowSidebar(true);
+        newMode();
 
     }
 
@@ -130,14 +125,17 @@ export default (props) => {
     }
 
     const newMode = () => {
+        $("#title").val("");
+        setValue("")
         setEdit(false)
         setnewNote(true)
-        setValue("")
+
+        
     }
 
     //Delete Note from users collection
     const handleDelete = async (id) => {
-        const response = await fetch(`http://localhost:5000/notes/${id}`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': "application/json",
@@ -193,17 +191,18 @@ export default (props) => {
                         {showSidebar ?
                             <div className="Dashboard__main-content__sidebar__content">
                                 <div className="Dashboard__main-content__sidebar__content__addnote" >
-                                    <div className="item-add" onClick={newMode}> <i className="pi pi-plus-circle" style={{ color: "#5271ff", fontSize: "1.8em", margin: "0", padding: "0" }}></i> Add a Note</div>
+                                    <div className="item-add" onClick={newMode}> <i className="pi pi-plus-circle" ></i> <h4>Create a new note: </h4></div>
                                 </div>
                                 {notes ?
                                     notes.map((note, index) => {
                                         return (
-                                            <div className="Dashboard__main-content__sidebar__content__item" key={index} onClick={() => { editData("edit", note.title, note.notes, note._id)}}>
+                                            <div className="Dashboard__main-content__sidebar__content__item" key={index}>
                                                 <div className="item-title" key={index}>{note.title}</div>
                                                 <div className="tooltip">
-                                                    <button onClick={() => {
+                                                <i class="pi pi-pencil" onClick={() => { editData("edit", note.title, note.notes, note._id)}}></i>
+                                                <i class="pi pi-trash" onClick={() => {
                                                         handleDelete(note._id)
-                                                    }}>X</button>
+                                                    }}></i> 
                                                 </div>
                                             </div>
                                         )
@@ -224,11 +223,10 @@ export default (props) => {
                         {newNote ?
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
-                                <label htmlFor="title">Title:</label><br />
-                                <input type="text" name="title" id="title" onChange={handleChange} /><br />
-                                <label htmlFor="notes">Body:</label><br />
+                                <label htmlFor="title">Title:</label>
+                                <input type="text" name="title" id="title" placeholder="Type in your title here..."onChange={handleChange} /><br />
                                 <div className="editor-area">
-                                    <ReactQuill id="notes" theme="snow" value={value} style={divStyle} onChange={setValue} />
+                                    <ReactQuill id="notes" theme="snow" value={value} placeholder="Here is where your notes go..." style={divStyle} onChange={setValue} />
                                 </div><br />
                                 <button type="submit" onClick={addNote}> Create Note</button>
                             </form>
@@ -237,11 +235,10 @@ export default (props) => {
                         {edit ?
                         <div className="Dashboard__main-content__note-container__note">
                             <form>
-                                <label htmlFor="title">Title:</label><br />
+                                <label htmlFor="title">Title:</label>
                                 <input type="text" name="title" id="title" value={noteTitle} onChange={() => {
                                     setNoteTitle($('#title').val())
                                     }} /><br />
-                                <label htmlFor="notes">Body:</label><br />
                                 <div className="editor-area">
                                     <ReactQuill id="notes" theme="snow" value={noteBody} style={divStyle} onChange={setNoteBody}/>
                                 </div><br />
