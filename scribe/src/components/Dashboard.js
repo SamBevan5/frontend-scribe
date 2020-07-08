@@ -165,7 +165,7 @@ export default (props) => {
     //pull in users notes 
     React.useEffect(() => {
         getNotes()
-    });
+    }, []);
 
     return (
         <>
