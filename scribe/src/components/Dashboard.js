@@ -10,7 +10,6 @@ import $ from 'jquery'
 export default (props) => {
 
     const [notes, setNotes] = React.useState(null)
-    const [token, setToken] = React.useState(null)
     const [formData, updateFormData] = React.useState(null);
     const [value, setValue] = useState('');
     const [showSidebar, setshowSidebar] = React.useState(true)
@@ -19,20 +18,6 @@ export default (props) => {
     let [noteId, setNoteId] = React.useState("");
     const [edit, setEdit] = React.useState(false);
     const [newNote, setnewNote] = React.useState(true);
-    
-
-    //localize storage of token
-    React.useEffect(() => {
-        const checkToken = JSON.parse(window.localStorage.getItem('auth-token'))
-        if (checkToken) {
-            setToken(checkToken)
-        }
-    }, [])
-
-    //pull in users notes 
-    React.useEffect(() => {
-        getNotes()
-    }, [])
 
     // Get all of the users notes from the API
     const getNotes = async () => {
@@ -99,7 +84,7 @@ export default (props) => {
 
         let finalData1 = {title: noteTitle, notes: noteBody}
 
-        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
+        await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': "application/json",
@@ -135,7 +120,7 @@ export default (props) => {
 
     //Delete Note from users collection
     const handleDelete = async (id) => {
-        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
+        await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': "application/json",
@@ -169,7 +154,7 @@ export default (props) => {
 
     //toggle sidebar visibility
     const toggleSidebar = () => {
-        if (showSidebar == true) {
+        if (showSidebar === true) {
             setshowSidebar(false)
         } else {
             setshowSidebar(true)
@@ -177,6 +162,10 @@ export default (props) => {
         console.log(showSidebar);
     }
 
+    //pull in users notes 
+    React.useEffect(() => {
+        getNotes()
+    }, []);
 
     return (
         <>

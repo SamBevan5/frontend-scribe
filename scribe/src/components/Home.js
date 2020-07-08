@@ -4,17 +4,6 @@ import Nav from './Nav'
 
 
 export default (props) => {
-    
-    // Store jwt
-    const [token, setToken] = React.useState(null)
-
-    // Localize storage for jwt
-    React.useEffect(() => {
-        const checkToken = JSON.parse(window.localStorage.getItem('auth-token'))
-        if (checkToken) {
-            setToken(checkToken)
-        }
-    }, [])
 
     return (
         <>
@@ -34,7 +23,7 @@ export default (props) => {
                         </a>
                     </div>
                     <div className="App__header__image">
-                        <img src="/scribe-banner-img.png" alt="banner-image"></img>
+                        <img src="/scribe-banner-img.png" alt="banner"></img>
                     </div>
                 </div>
                 <div className="App__main-content">
