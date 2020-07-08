@@ -18,8 +18,8 @@ export default (props) => {
         event.preventDefault()
         try {
             const newUser = {username, password}
-            await Axios.post('http://backend-scribe.herokuapp.com/users/register', newUser)
-            const loginResponse = await Axios.post('http://backend-scribe.herokuapp.com/users/login', {username, password})
+            await Axios.post('http://localhost:5000/users/register', newUser)
+            const loginResponse = await Axios.post('http://localhost:5000/users/login', {username, password})
             await setUserData({
                 token: loginResponse.data.token,
                 user: loginResponse.data.user
