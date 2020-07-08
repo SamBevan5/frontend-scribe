@@ -18,7 +18,7 @@ export default (props) => {
     const submit = (event) => {
         event.preventDefault()
         const loginUser = {username, password}
-           Axios.post('http://localhost:5000/users/login', loginUser)
+           Axios.post('http://backend-scribe.herokuapp.com/users/login', loginUser)
             .then(function (response){
                 // console.log(response)
                 setUserData({

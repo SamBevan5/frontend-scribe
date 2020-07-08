@@ -36,7 +36,7 @@ export default (props) => {
 
     // Get all of the users notes from the API
     const getNotes = async () => {
-        const response = await fetch('http://localhost:5000/notes', {
+        const response = await fetch('http://backend-scribe.herokuapp.com/notes', {
             headers: { Authorization: `bearer ${userData.token}` }
         })
         const result = await response.json();
@@ -70,7 +70,7 @@ export default (props) => {
         finalData.notes = value;
         console.log(finalData)
 
-        const response = await fetch(`http://localhost:5000/notes`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': "application/json",
@@ -99,7 +99,7 @@ export default (props) => {
 
         let finalData1 = {title: noteTitle, notes: noteBody}
 
-        const response = await fetch(`http://localhost:5000/notes/${id}`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': "application/json",
@@ -135,7 +135,7 @@ export default (props) => {
 
     //Delete Note from users collection
     const handleDelete = async (id) => {
-        const response = await fetch(`http://localhost:5000/notes/${id}`, {
+        const response = await fetch(`http://backend-scribe.herokuapp.com/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': "application/json",
